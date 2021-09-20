@@ -15,6 +15,7 @@
  ******************************************************************************/
 
 #include "alu.h"
+#include <stdio.h>
 
 /* Adds the two arguments and stores the sum in the return structure's result
  * field.  If the operation overflowed then the overflow flag is set. */
@@ -23,16 +24,15 @@ addition_subtraction_result add(uint16_t augend, uint16_t addend) {
 //    addition.result = augend + addend;                          // THIS IS DISALLOWED
 //    addition.overflow = false;                                  // THIS IS WRONG
 
+
     if(augend == 0){
         addition.result = addend;       // 0 + x = x
+        addition.overflow = false;
         return addition;
     }else if(addend == 0){
         addition.result = augend;       // x + 0 = x
+        addition.overflow = false;
         return addition;
-    }
-
-    if(is_signed){
-
     }
 
     uint16_t carry;
@@ -42,8 +42,8 @@ addition_subtraction_result add(uint16_t augend, uint16_t addend) {
         augend = augend ^ addend;
         addend = carry << 1;
         addition.result = augend ^ addend;
-    }
 
+    }
 
     return addition;
 }
@@ -52,8 +52,9 @@ addition_subtraction_result add(uint16_t augend, uint16_t addend) {
  * return structure's result field.  If the operation overflowed then the
  * overflow flag is set. */
 addition_subtraction_result subtract(uint16_t menuend, uint16_t subtrahend) {
-//    uint16_t augend = menuend;
-//    uint16_t addend = (uint16_t)(-subtrahend);                  // THIS IS DISALLOWED
+    uint16_t augend = menuend;
+    uint16_t addend = (uint16_t)(-subtrahend);                  // THIS IS DISALLOWED
+
 
     if(is_signed){
         //do something
