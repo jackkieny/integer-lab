@@ -41,7 +41,7 @@ typedef struct {
 
 /* Adds the two arguments and stores the sum in the return structure's result
  * field.  If the operation overflowed then the overflow flag is set. */
-addition_subtraction_result add(uint16_t a, uint16_t b);
+addition_subtraction_result add(uint16_t augend, uint16_t addend);
 
 /* Subtracts the second argument from the first, stores the difference in the
  * return structure's result field.  If the operation overflowed then the
